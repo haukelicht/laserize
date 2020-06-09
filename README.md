@@ -1,4 +1,4 @@
-# {Laserize}: An R package for obtain LASER text embeddings by interfacing the Python laserembeddings module
+# Laserize: An R package for obtaining LASER text embeddings by interfacing the Python `laserembeddings` module
 
 The **laserize** package provides an R interface to the `embed_sentence` functionality provided by the [`laserembeddings`](https://pypi.org/project/laserembeddings/, "PyPi: laserembeddings") Python module.
 `laserembeddings` is a port of Facebook Research's [LASER](https://github.com/facebookresearch/LASER)
@@ -11,7 +11,7 @@ The `laserize` package provides an itnerface to this functionality.
 
 # Installation
 
-```r
+```
 devtools::install_github("haukelicht/laserize")
 ```
 
@@ -22,14 +22,15 @@ devtools::install_github("haukelicht/laserize")
 To setup laserize, use `setup_laser`. 
 This *interactive* function downloads all required modules and LASER model.
 
-```{r }
+```
 library(laserize)
 setup_laser()
 ```
 
 If provided a valid file path to its `.py.venv` argument,
 `setup_laser` creates a Python virtual environment (if not already exists) at the desired location.
-```{r }
+
+```
 library(laserize)
 # with path to _existing_ Python vortual environment
 setup_laser(.py.venv = "path/to/venv")
@@ -37,12 +38,17 @@ setup_laser(.py.venv = "path/to/venv")
 setup_laser(.py.venv = "path/to/existing/dir/venv")
 ```
 
-For mor information see `?laserize::setup_laser`.
+For details and more options see `?laserize::setup_laser`.
 
 
 ## Embedding sentences 
 
-```{r}
+Sentences/texts can be embedded by passing a `data.frame` object to `laserize::laserize`.
+The data frame needs to have columns 'id' (sentence ID), 'text' (sentence text), 'lang' (sentence language).
+
+For details and more options see `?laserize::laserize`.
+
+```
 test_df <- tibble::tribble(
   ~id, ~text, ~lang,
   001, "Hallo Welt", "de",
